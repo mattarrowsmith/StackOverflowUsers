@@ -14,7 +14,7 @@ public protocol NetworkProtocol: Actor {
 public actor Network: NetworkProtocol {
     let session: URLSession
 
-    init(session: URLSession) {
+    init(session: URLSession = .shared) {
         self.session = session
     }
 

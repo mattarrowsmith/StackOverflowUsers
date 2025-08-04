@@ -1,12 +1,11 @@
 //
-//  UserModelDTO.swift
+//  User.swift
 //  StackOverflowUsers
 //
 //  Created by Arrowsmith, Matthew on 04/08/2025.
 //
 
-// TODO: The same as User for now, might not be necessary.
-struct UserDTO: Codable {
+struct User: Codable {
     let accountId: String
     let displayName: String
     let profileImage: String
