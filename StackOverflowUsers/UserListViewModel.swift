@@ -17,6 +17,6 @@ class UserListViewModel: UserListViewModelDelegate {
     }
 
     public func fetchUsers() async {
-        await userService.fetchUsers()
+        print(await userService.fetchUsers())
     }
 }

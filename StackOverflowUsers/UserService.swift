@@ -19,15 +19,15 @@ class UserService: UserServiceProtocol {
 
     func fetchUsers() async -> [User] {
         // TODO: Use URLBuilder
-        guard let url = URL(string: "http://api.stackexchange.com/2.2/users?page=1&pagesize=20&order=desc&sort=reputation&site=stackoverflow") else {
+        guard let url = URL(string: "https://api.stackexchange.com/2.2/users?page=1&pagesize=20&order=desc&sort=reputation&site=stackoverflow") else {
             return [] // throw error instead?
         }
         let fetchUsersRequest = NetworkRequest(httpMethod: .get, url: url)
 
         do {
             let response = try await network.send(fetchUsersRequest)
-            let users = try JSONDecoder().decode([User].self, from: response.data ?? Data())
-            return users
+            let responseDTO = try JSONDecoder().decode(UserResponseDTO.self, from: response.data ?? Data())
+            return UserMapper.map(from: responseDTO)
         } catch {
             print("Error fetching users: \(error)")
         }

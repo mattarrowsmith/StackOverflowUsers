@@ -6,7 +6,7 @@
 //
 
 struct User: Codable {
-    let accountId: String
+    let accountId: Int
     let displayName: String
     let profileImage: String
 }
