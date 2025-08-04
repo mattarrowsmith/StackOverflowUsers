@@ -10,9 +10,9 @@ protocol UserListViewModelDelegate {
 }
 
 class UserListViewModel: UserListViewModelDelegate {
-    let UserRepository: UserServiceProtocol
+    let userService: UserServiceProtocol
 
-    init(userRepository: UserServiceProtocol) {
-        self.UserRepository = userRepository
+    init(userService: UserServiceProtocol) {
+        self.userService = userService
     }
 }
