@@ -36,7 +36,7 @@ class UserListViewController: UIViewController, UITableViewDataSource {
             assertionFailure("Cannot dequeue reusable cell \(UserListTableViewCell.self) with reuseIdentifier: \(UserListTableViewCell.identifier)")
             return UITableViewCell()
         }
-        let user = User(accountId: 1, displayName: "John Doe", profileImage: "https://example.com/image.png")
+        let user = User(accountId: 1, displayName: "John Doe", profileImage: "https://www.gravatar.com/avatar/932fb89b9d4049cec5cba357bf0ae388?s=256&d=identicon&r=PG", reputation: 10)
 
         cell.configure(with: user)
         return cell

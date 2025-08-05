@@ -9,4 +9,5 @@ struct User: Codable {
     let accountId: Int
     let displayName: String
     let profileImage: String
+    let reputation: Int
 }

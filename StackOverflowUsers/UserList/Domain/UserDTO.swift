@@ -14,12 +14,14 @@ struct UserDTO: Codable {
     let accountId: Int
     let displayName: String
     let profileImage: String
+    let reputation: Int
 
     enum CodingKeys: String, CodingKey {
-            case accountId = "account_id"
-            case displayName = "display_name"
-            case profileImage = "profile_image"
-        }
+        case accountId = "account_id"
+        case displayName = "display_name"
+        case profileImage = "profile_image"
+        case reputation = "reputation"
+    }
 }
 
 struct UserMapper {
@@ -31,7 +33,8 @@ struct UserMapper {
         return .init(
             accountId: dto.accountId,
             displayName: dto.displayName,
-            profileImage: dto.profileImage
+            profileImage: dto.profileImage,
+            reputation: dto.reputation
         )
     }
 }
