@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserListViewController: UIViewController, UITableViewDataSource {
+class UserListViewController: UIViewController, UITableViewDataSource, UserListViewModelDelegate {
     @IBOutlet weak var userTableView: UITableView!
 
     var viewModel: UserListViewModel = UserListViewModel()
@@ -16,16 +16,18 @@ class UserListViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         let nib = UINib(nibName: "UserListTableViewCell", bundle: nil)
         userTableView.register(nib, forCellReuseIdentifier: UserListTableViewCell.identifier)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
+        viewModel.delegate = self
         Task {
             await viewModel.fetchUsers()
         }
     }
 
+    func onLoadComplete() {
+        userTableView.reloadData()
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.users.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,9 +38,8 @@ class UserListViewController: UIViewController, UITableViewDataSource {
             assertionFailure("Cannot dequeue reusable cell \(UserListTableViewCell.self) with reuseIdentifier: \(UserListTableViewCell.identifier)")
             return UITableViewCell()
         }
-        let user = User(accountId: 1, displayName: "John Doe", profileImage: "https://www.gravatar.com/avatar/932fb89b9d4049cec5cba357bf0ae388?s=256&d=identicon&r=PG", reputation: 10)
 
-        cell.configure(with: user)
+        cell.configure(with: viewModel.users[indexPath.row])
         return cell
     }
 }

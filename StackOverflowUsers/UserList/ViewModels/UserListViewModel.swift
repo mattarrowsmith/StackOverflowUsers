@@ -4,19 +4,29 @@
 //
 //  Created by Arrowsmith, Matthew on 04/08/2025.
 //
+import Foundation
 
-protocol UserListViewModelDelegate {
-    func fetchUsers() async
+protocol UserListViewModelDelegate: AnyObject {
+    func onLoadComplete()
 }
 
-class UserListViewModel: UserListViewModelDelegate {
+class UserListViewModel {
     let userService: UserServiceProtocol
+    var users: [User] = []
+    weak var delegate: UserListViewModelDelegate?
 
     init(userService: UserServiceProtocol = UserService()) {
         self.userService = userService
     }
 
     public func fetchUsers() async {
-        print(await userService.fetchUsers())
+        users = await userService.fetchUsers()
+        loadComplete()
+    }
+
+    private func loadComplete() {
+        DispatchQueue.main.async {
+            self.delegate?.onLoadComplete()
+        }
     }
 }
