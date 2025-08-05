@@ -8,20 +8,14 @@
 import UIKit
 
 class UserListViewController: UIViewController, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UserListTableViewCell()
-    }
-    
+    @IBOutlet weak var userTableView: UITableView!
+
     var viewModel: UserListViewModel = UserListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
+        let nib = UINib(nibName: "UserListTableViewCell", bundle: nil)
+        userTableView.register(nib, forCellReuseIdentifier: UserListTableViewCell.identifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +24,22 @@ class UserListViewController: UIViewController, UITableViewDataSource {
         }
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "UserListTableViewCell",
+            for: indexPath
+        ) as? UserListTableViewCell else {
+            assertionFailure("Cannot dequeue reusable cell \(UserListTableViewCell.self) with reuseIdentifier: \(UserListTableViewCell.identifier)")
+            return UITableViewCell()
+        }
+        let user = User(accountId: 1, displayName: "John Doe", profileImage: "https://example.com/image.png")
+
+        cell.configure(with: user)
+        return cell
+    }
 }
 

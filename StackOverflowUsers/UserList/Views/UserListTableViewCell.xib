@@ -6,13 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserListTableViewCell" customModule="StackOverflowUsers" customModuleProvider="target">
-            <connections>
-                <outlet property="displayNameLabel" destination="Jdb-A8-6oP" id="Pqg-xJ-3Qh"/>
-                <outlet property="profileImageView" destination="7Fq-bb-ZGe" id="hnE-DH-RxV"/>
-                <outlet property="reputationLabel" destination="IT8-Gy-qw1" id="RBP-Uj-A3s"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserListTableViewCell" rowHeight="166" id="dcd-cA-KpO" customClass="UserListTableViewCell" customModule="StackOverflowUsers" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="493" height="166"/>
@@ -51,6 +45,11 @@
                     <constraint firstItem="Jdb-A8-6oP" firstAttribute="leading" secondItem="7Fq-bb-ZGe" secondAttribute="trailing" constant="16" id="sty-23-bzF"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="displayNameLabel" destination="Jdb-A8-6oP" id="EZW-Ik-nXb"/>
+                <outlet property="profileImageView" destination="7Fq-bb-ZGe" id="N9F-zy-GrE"/>
+                <outlet property="reputationLabel" destination="IT8-Gy-qw1" id="jWG-zY-u7f"/>
+            </connections>
             <point key="canvasLocation" x="50" y="-417"/>
         </tableViewCell>
     </objects>
