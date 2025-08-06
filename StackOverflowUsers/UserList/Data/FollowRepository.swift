@@ -11,6 +11,8 @@ import CoreData
 
 protocol FollowRepositoryProtocol {
     func fetchFollowedUserIds() async throws -> Set<Int>
+    func followUser(withId id: Int) async -> Void
+    func unfollowUser(withId id: Int) async throws -> Void
 }
 
 class FollowRepository: FollowRepositoryProtocol {
@@ -20,9 +22,9 @@ class FollowRepository: FollowRepositoryProtocol {
         self.store = store
     }
 
-    enum QueryResult {
-        case success(Set<Int>)
-        case failure(Error)
+    enum FollowRepositoryError: Error {
+        case userAlreadyFollowed
+        case userNotFound
     }
 
     public func fetchFollowedUserIds() async throws -> Set<Int> {
@@ -33,6 +35,30 @@ class FollowRepository: FollowRepositoryProtocol {
             let results = try context.fetch(fetchRequest)
             let userIDs = results.compactMap { Int($0.id) }
             return Set(userIDs)
+        }
+    }
+
+    public func followUser(withId id: Int) async -> Void {
+        // TODO: Prevent duplicates
+        await store.persistentContainer.performBackgroundTask { context in
+            let followedUser = FollowedUser(context: context)
+            followedUser.id = Int64(id)
+            self.store.saveContext()
+        }
+    }
+
+    public func unfollowUser(withId id: Int) async throws -> Void {
+        try await store.persistentContainer.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<FollowedUser> = FollowedUser.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+
+            let results = try context.fetch(fetchRequest)
+            if let user = results.first {
+                context.delete(user)
+                self.store.saveContext()
+            } else {
+                throw FollowRepositoryError.userNotFound
+            }
         }
     }
 }

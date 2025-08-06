@@ -31,8 +31,4 @@ class CoreDataStore {
             }
         }
     }
-
-    func run(_ task: @escaping (NSManagedObjectContext) -> Void) {
-        persistentContainer.performBackgroundTask(task)
-    }
 }
