@@ -49,6 +49,22 @@ class UserListViewModel {
         }
     }
 
+    public func followUser(user: User) async {
+        do {
+            await followRepository.followUser(withId: user.accountId)
+        } catch {
+            print("Error following user: \(error)")
+        }
+    }
+
+    public func unfollowUser(user: User) async {
+        do {
+            try await followRepository.unfollowUser(withId: user.accountId)
+        } catch {
+            print("Error unfollowing user: \(error)")
+        }
+    }
+
     private func loadComplete() {
         DispatchQueue.main.async {
             self.delegate?.onLoadComplete()
