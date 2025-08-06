@@ -18,7 +18,7 @@ class UserListViewController: UIViewController, UITableViewDataSource, UserListV
         userTableView.register(nib, forCellReuseIdentifier: UserListTableViewCell.identifier)
         viewModel.delegate = self
         Task {
-            await viewModel.fetchUsers()
+            await viewModel.fetch()
         }
     }
 

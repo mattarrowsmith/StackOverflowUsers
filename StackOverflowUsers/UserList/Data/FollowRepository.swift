@@ -10,7 +10,7 @@
 import CoreData
 
 protocol FollowRepositoryProtocol {
-    func fetchFollowedUserIds(completion: @escaping (FollowRepository.QueryResult) -> Void)
+    func fetchFollowedUserIds() async throws -> Set<Int>
 }
 
 class FollowRepository: FollowRepositoryProtocol {
@@ -25,19 +25,14 @@ class FollowRepository: FollowRepositoryProtocol {
         case failure(Error)
     }
 
-    public func fetchFollowedUserIds(completion: @escaping(QueryResult) -> Void) -> Void {
-        store.run { context in
+    public func fetchFollowedUserIds() async throws -> Set<Int> {
+        return try await store.persistentContainer.performBackgroundTask { context in
             let fetchRequest: NSFetchRequest<FollowedUser> = FollowedUser.fetchRequest()
             fetchRequest.propertiesToFetch = ["id"]
 
-            do {
-                let results = try context.fetch(fetchRequest)
-                let userIDs = results.compactMap { Int($0.id) }
-                let result = QueryResult.success(Set(userIDs))
-                completion(result)
-            } catch {
-                completion(.failure(error))
-            }
+            let results = try context.fetch(fetchRequest)
+            let userIDs = results.compactMap { Int($0.id) }
+            return Set(userIDs)
         }
     }
 }

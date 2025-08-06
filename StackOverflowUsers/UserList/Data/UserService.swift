@@ -7,7 +7,7 @@
 
 import Foundation
 protocol UserServiceProtocol {
-    func fetchUsers() async -> [User]
+    func fetchUsers() async throws -> [User]
 }
 
 class UserService: UserServiceProtocol {
@@ -17,10 +17,10 @@ class UserService: UserServiceProtocol {
         self.network = network
     }
 
-    func fetchUsers() async -> [User] {
+    func fetchUsers() async throws -> [User] {
         // TODO: Use URLBuilder, make query parameters more flexible
         guard let url = URL(string: "https://api.stackexchange.com/2.2/users?page=1&pagesize=20&order=desc&sort=reputation&site=stackoverflow") else {
-            return [] // throw error instead?
+            throw UserServiceError.invalidURL
         }
         let fetchUsersRequest = NetworkRequest(httpMethod: .get, url: url)
 
@@ -29,9 +29,12 @@ class UserService: UserServiceProtocol {
             let responseDTO = try JSONDecoder().decode(UserResponseDTO.self, from: response.data ?? Data())
             return UserMapper.map(from: responseDTO)
         } catch {
-            print("Error fetching users: \(error)")
+           throw UserServiceError.invalidResponse
         }
+    }
 
-        return []
+    enum UserServiceError: Error {
+        case invalidURL
+        case invalidResponse
     }
 }

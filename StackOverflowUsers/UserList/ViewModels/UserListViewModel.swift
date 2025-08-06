@@ -12,16 +12,41 @@ protocol UserListViewModelDelegate: AnyObject {
 
 class UserListViewModel {
     let userService: UserServiceProtocol
+    let followRepository: FollowRepositoryProtocol
+
     var users: [User] = []
+    var followedUserIds: Set<Int> = []
+
     weak var delegate: UserListViewModelDelegate?
 
-    init(userService: UserServiceProtocol = UserService()) {
+    init(
+        userService: UserServiceProtocol = UserService(),
+        followRepository: FollowRepositoryProtocol = FollowRepository()
+    ) {
         self.userService = userService
+        self.followRepository = followRepository
+    }
+
+    public func fetch() async {
+        await fetchUsers()
+        await fetchFollowedUsers()
+        loadComplete()
     }
 
     public func fetchUsers() async {
-        users = await userService.fetchUsers()
-        loadComplete()
+        do {
+            users = try await userService.fetchUsers()
+        } catch {
+            print("Error fetching users: \(error)")
+        }
+    }
+
+    public func fetchFollowedUsers() async {
+        do {
+            followedUserIds = try await followRepository.fetchFollowedUserIds()
+        } catch {
+            print("Error fetching followed user IDs: \(error)")
+        }
     }
 
     private func loadComplete() {
