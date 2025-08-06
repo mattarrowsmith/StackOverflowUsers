@@ -8,7 +8,12 @@
 /// Client in this instance referring to the local user.
 
 import CoreData
-class FollowRepository {
+
+protocol FollowRepositoryProtocol {
+    func fetchFollowedUserIds(completion: @escaping (FollowRepository.QueryResult) -> Void)
+}
+
+class FollowRepository: FollowRepositoryProtocol {
     private let store: CoreDataStore
 
     init(store: CoreDataStore = CoreDataStore.shared) {
@@ -20,7 +25,7 @@ class FollowRepository {
         case failure(Error)
     }
 
-    private func fetchFollowedUserIds(completion: @escaping(QueryResult) -> Void) -> Void {
+    public func fetchFollowedUserIds(completion: @escaping(QueryResult) -> Void) -> Void {
         store.run { context in
             let fetchRequest: NSFetchRequest<FollowedUser> = FollowedUser.fetchRequest()
             fetchRequest.propertiesToFetch = ["id"]
