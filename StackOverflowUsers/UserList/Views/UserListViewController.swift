@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserListViewController: UIViewController, UITableViewDataSource, UserListViewModelDelegate {
+class UserListViewController: UIViewController, UITableViewDataSource, UserListViewModelDelegate, UserListTableViewCellDelegate {
     @IBOutlet weak var userTableView: UITableView!
 
     var viewModel: UserListViewModel = UserListViewModel()
@@ -39,8 +39,19 @@ class UserListViewController: UIViewController, UITableViewDataSource, UserListV
             return UITableViewCell()
         }
 
-        cell.configure(with: viewModel.users[indexPath.row])
+        let user = viewModel.users[indexPath.row]
+        cell.configure(with: user, isFollowed: viewModel.followedUserIds.contains(user.accountId))
+        cell.delegate = self
         return cell
+    }
+
+    func didTapFollowButton(_ cell: UserListTableViewCell) {
+        guard let indexPath = userTableView.indexPath(for: cell) else { return }
+
+        let user = viewModel.users[indexPath.row]
+        Task {
+            await viewModel.follow(user)
+        }
     }
 }
 

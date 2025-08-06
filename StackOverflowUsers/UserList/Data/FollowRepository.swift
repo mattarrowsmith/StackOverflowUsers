@@ -11,7 +11,7 @@ import CoreData
 
 protocol FollowRepositoryProtocol {
     func fetchFollowedUserIds() async throws -> Set<Int>
-    func followUser(withId id: Int) async -> Void
+    func followUser(withId id: Int) async throws -> Void
     func unfollowUser(withId id: Int) async throws -> Void
 }
 
@@ -38,12 +38,12 @@ class FollowRepository: FollowRepositoryProtocol {
         }
     }
 
-    public func followUser(withId id: Int) async -> Void {
+    public func followUser(withId id: Int) async throws -> Void {
         // TODO: Prevent duplicates
-        await store.persistentContainer.performBackgroundTask { context in
+        try await store.persistentContainer.performBackgroundTask { context in
             let followedUser = FollowedUser(context: context)
             followedUser.id = Int64(id)
-            self.store.saveContext()
+            try context.save()
         }
     }
 
@@ -55,7 +55,7 @@ class FollowRepository: FollowRepositoryProtocol {
             let results = try context.fetch(fetchRequest)
             if let user = results.first {
                 context.delete(user)
-                self.store.saveContext()
+                try context.save()
             } else {
                 throw FollowRepositoryError.userNotFound
             }

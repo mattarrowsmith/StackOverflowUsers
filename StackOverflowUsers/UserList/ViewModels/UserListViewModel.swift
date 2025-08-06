@@ -49,15 +49,18 @@ class UserListViewModel {
         }
     }
 
-    public func followUser(user: User) async {
+    public func follow(_ user: User) async {
         do {
-            await followRepository.followUser(withId: user.accountId)
+            try await followRepository.followUser(withId: user.accountId)
         } catch {
             print("Error following user: \(error)")
         }
+
+        followedUserIds.insert(user.accountId)
+        loadComplete() // TODO: Only update the necessary row
     }
 
-    public func unfollowUser(user: User) async {
+    public func unfollow(_ user: User) async {
         do {
             try await followRepository.unfollowUser(withId: user.accountId)
         } catch {
