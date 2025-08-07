@@ -3,12 +3,12 @@ import CoreData
 @testable import StackOverflowUsers
 
 struct FollowRepositoryTests {
-    var mockStore: CoreDataStore
+    var mockStore: CoreDataStoreMock
     var sut: FollowRepository
     var managedObjectContext: NSManagedObjectContext
 
     init() {
-        mockStore = CoreDataStore()
+        mockStore = CoreDataStoreMock()
         managedObjectContext = mockStore.persistentContainer.viewContext
         sut = FollowRepository(store: mockStore)
     }
@@ -27,7 +27,7 @@ struct FollowRepositoryTests {
 
     @Test
     func fetchFollowedUserIds_whenStoreHasUsers_returnsCorrectIds() async throws {
-        try createAndSaveFollowedUser(id: 1)
+        try createAndSaveFollowedUser(id: 3)
         try createAndSaveFollowedUser(id: 2)
 
         let expectedIds: Set<Int> = [1, 2]

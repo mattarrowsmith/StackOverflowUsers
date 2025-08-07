@@ -7,7 +7,12 @@
 
 import CoreData
 
-class CoreDataStore {
+protocol CoreDataStoreProtocol {
+    var persistentContainer: NSPersistentContainer { get }
+    func saveContext()
+}
+
+class CoreDataStore: CoreDataStoreProtocol {
     static let shared = CoreDataStore()
 
     lazy var persistentContainer: NSPersistentContainer = {

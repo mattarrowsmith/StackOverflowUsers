@@ -16,9 +16,9 @@ protocol FollowRepositoryProtocol {
 }
 
 class FollowRepository: FollowRepositoryProtocol {
-    private let store: CoreDataStore
+    private let store: CoreDataStoreProtocol
 
-    init(store: CoreDataStore = CoreDataStore.shared) {
+    init(store: CoreDataStoreProtocol = CoreDataStore.shared) {
         self.store = store
     }
 
