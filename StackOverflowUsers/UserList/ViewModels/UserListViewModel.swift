@@ -61,7 +61,7 @@ class UserListViewModel {
         return errorMessages.isEmpty ? nil : errorMessages.joined(separator: "\n")
     }
 
-    public func fetchUsers() async -> LoadState{
+    public func fetchUsers() async -> LoadState {
         do {
             users = try await userService.fetchUsers()
         } catch {
