@@ -7,11 +7,11 @@
 
 import Foundation
 
-public protocol NetworkProtocol: Actor {
+public protocol NetworkProtocol {
     func send(_ request: NetworkRequest) async throws -> NetworkResponse
 }
 
-public actor Network: NetworkProtocol {
+public struct Network: NetworkProtocol {
     let session: URLSession
 
     init(session: URLSession = .shared) {
@@ -27,7 +27,6 @@ public actor Network: NetworkProtocol {
     }
 }
 
-
 public enum HttpMethod: String {
     case get
     case post
@@ -39,7 +38,6 @@ public enum HttpMethod: String {
     }
 }
 
-// consider a request builder/factory
 public struct NetworkRequest {
     public let httpMethod: HttpMethod
     public let url: URL
