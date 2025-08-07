@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 9EA2BB392E4131C800ED3CBD;
 			remoteInfo = StackOverflowUsers;
 		};
-		9EA2BB5E2E4131C900ED3CBD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9EA2BB322E4131C800ED3CBD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9EA2BB392E4131C800ED3CBD;
-			remoteInfo = StackOverflowUsers;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9EA2BB3A2E4131C800ED3CBD /* StackOverflowUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackOverflowUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA2BB532E4131C900ED3CBD /* StackOverflowUsersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StackOverflowUsersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9EA2BB5D2E4131C900ED3CBD /* StackOverflowUsersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StackOverflowUsersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -53,11 +45,6 @@
 			path = StackOverflowUsersTests;
 			sourceTree = "<group>";
 		};
-		9EA2BB602E4131C900ED3CBD /* StackOverflowUsersUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = StackOverflowUsersUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,13 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9EA2BB5A2E4131C900ED3CBD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -90,7 +70,6 @@
 			children = (
 				9EA2BB3C2E4131C800ED3CBD /* StackOverflowUsers */,
 				9EA2BB562E4131C900ED3CBD /* StackOverflowUsersTests */,
-				9EA2BB602E4131C900ED3CBD /* StackOverflowUsersUITests */,
 				9EA2BB3B2E4131C800ED3CBD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,7 +79,6 @@
 			children = (
 				9EA2BB3A2E4131C800ED3CBD /* StackOverflowUsers.app */,
 				9EA2BB532E4131C900ED3CBD /* StackOverflowUsersTests.xctest */,
-				9EA2BB5D2E4131C900ED3CBD /* StackOverflowUsersUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,29 +131,6 @@
 			productReference = 9EA2BB532E4131C900ED3CBD /* StackOverflowUsersTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9EA2BB5C2E4131C900ED3CBD /* StackOverflowUsersUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9EA2BB6E2E4131C900ED3CBD /* Build configuration list for PBXNativeTarget "StackOverflowUsersUITests" */;
-			buildPhases = (
-				9EA2BB592E4131C900ED3CBD /* Sources */,
-				9EA2BB5A2E4131C900ED3CBD /* Frameworks */,
-				9EA2BB5B2E4131C900ED3CBD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9EA2BB5F2E4131C900ED3CBD /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				9EA2BB602E4131C900ED3CBD /* StackOverflowUsersUITests */,
-			);
-			name = StackOverflowUsersUITests;
-			packageProductDependencies = (
-			);
-			productName = StackOverflowUsersUITests;
-			productReference = 9EA2BB5D2E4131C900ED3CBD /* StackOverflowUsersUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,10 +146,7 @@
 					};
 					9EA2BB522E4131C900ED3CBD = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = 9EA2BB392E4131C800ED3CBD;
-					};
-					9EA2BB5C2E4131C900ED3CBD = {
-						CreatedOnToolsVersion = 16.4;
+						LastSwiftMigration = 1640;
 						TestTargetID = 9EA2BB392E4131C800ED3CBD;
 					};
 				};
@@ -215,7 +167,6 @@
 			targets = (
 				9EA2BB392E4131C800ED3CBD /* StackOverflowUsers */,
 				9EA2BB522E4131C900ED3CBD /* StackOverflowUsersTests */,
-				9EA2BB5C2E4131C900ED3CBD /* StackOverflowUsersUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -229,13 +180,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9EA2BB512E4131C900ED3CBD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9EA2BB5B2E4131C900ED3CBD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,13 +203,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9EA2BB592E4131C900ED3CBD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -273,11 +210,6 @@
 			isa = PBXTargetDependency;
 			target = 9EA2BB392E4131C800ED3CBD /* StackOverflowUsers */;
 			targetProxy = 9EA2BB542E4131C900ED3CBD /* PBXContainerItemProxy */;
-		};
-		9EA2BB5F2E4131C900ED3CBD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9EA2BB392E4131C800ED3CBD /* StackOverflowUsers */;
-			targetProxy = 9EA2BB5E2E4131C900ED3CBD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -461,6 +393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G3M5Q7X4AY;
@@ -470,6 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.marrowsmith.StackOverflowUsersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StackOverflowUsers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StackOverflowUsers";
@@ -480,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G3M5Q7X4AY;
@@ -492,40 +427,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StackOverflowUsers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StackOverflowUsers";
-			};
-			name = Release;
-		};
-		9EA2BB6F2E4131C900ED3CBD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G3M5Q7X4AY;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.marrowsmith.StackOverflowUsersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = StackOverflowUsers;
-			};
-			name = Debug;
-		};
-		9EA2BB702E4131C900ED3CBD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G3M5Q7X4AY;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.marrowsmith.StackOverflowUsersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = StackOverflowUsers;
 			};
 			name = Release;
 		};
@@ -555,15 +456,6 @@
 			buildConfigurations = (
 				9EA2BB6C2E4131C900ED3CBD /* Debug */,
 				9EA2BB6D2E4131C900ED3CBD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9EA2BB6E2E4131C900ED3CBD /* Build configuration list for PBXNativeTarget "StackOverflowUsersUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9EA2BB6F2E4131C900ED3CBD /* Debug */,
-				9EA2BB702E4131C900ED3CBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
