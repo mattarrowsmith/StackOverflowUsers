@@ -16,6 +16,7 @@ class UserListViewController: UIViewController, UITableViewDataSource, UserListV
         super.viewDidLoad()
         let nib = UINib(nibName: "UserListTableViewCell", bundle: nil)
         userTableView.register(nib, forCellReuseIdentifier: UserListTableViewCell.identifier)
+        userTableView.allowsSelection = false
         viewModel.delegate = self
         Task {
             await viewModel.fetch()

@@ -28,15 +28,9 @@ class UserListTableViewCell: UITableViewCell {
 
     func configure(with user: User, isFollowed: Bool) {
         displayNameLabel.text = user.displayName
-        reputationLabel.text = "\(user.reputation)" // TODO: worth formatting
-        if isFollowed { // TODO: Proper styling
-            followButton.setTitle("Unfollow", for: .normal)
-            followButton.backgroundColor = .systemGray
-        } else {
-            followButton.setTitle("Follow", for: .normal)
-            followButton.backgroundColor = .systemBlue
-        }
-        guard let url = URL(string: user.profileImage) else { // TODO: probably best to make this a URL in the model
+        reputationLabel.text = "\(user.reputation)"
+        followButton.configuration = isFollowed ? .unfollow : .follow
+        guard let url = URL(string: user.profileImage) else {
             return
         }
         loadImage(from: url)
@@ -57,6 +51,22 @@ class UserListTableViewCell: UITableViewCell {
                 self?.profileImageView.image = image
             }
         }.resume()
+    }
+}
+
+extension UIButton.Configuration {
+    static var follow: Self {
+        var config = UIButton.Configuration.filled()
+        config.title = "Follow"
+        config.cornerStyle = .medium
+        return config
+    }
+
+    static var unfollow: Self {
+        var config = UIButton.Configuration.tinted()
+        config.title = "Unfollow"
+        config.cornerStyle = .medium
+        return config
     }
 }
 
