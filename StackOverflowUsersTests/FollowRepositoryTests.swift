@@ -27,7 +27,7 @@ struct FollowRepositoryTests {
 
     @Test
     func fetchFollowedUserIds_whenStoreHasUsers_returnsCorrectIds() async throws {
-        try createAndSaveFollowedUser(id: 3)
+        try createAndSaveFollowedUser(id: 1)
         try createAndSaveFollowedUser(id: 2)
 
         let expectedIds: Set<Int> = [1, 2]

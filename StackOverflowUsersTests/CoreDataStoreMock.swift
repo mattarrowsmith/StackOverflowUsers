@@ -13,7 +13,7 @@ class CoreDataStoreMock: NSObject, CoreDataStoreProtocol {
     lazy var persistentContainer: NSPersistentContainer = {
         let description = NSPersistentStoreDescription()
         description.url = URL(fileURLWithPath: "/dev/null")
-        let container = NSPersistentContainer(name: "your_model_name")
+        let container = NSPersistentContainer(name: "CoreDataModel")
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
