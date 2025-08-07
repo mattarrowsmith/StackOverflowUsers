@@ -39,8 +39,16 @@ class FollowRepository: FollowRepositoryProtocol {
     }
 
     public func followUser(withId id: Int) async throws -> Void {
-        // TODO: Prevent duplicates
         try await store.persistentContainer.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<FollowedUser> = FollowedUser.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", NSNumber(value: id))
+            fetchRequest.fetchLimit = 1
+
+            let count = try context.count(for: fetchRequest)
+            guard count == 0 else {
+                throw FollowRepositoryError.userAlreadyFollowed
+            }
+
             let followedUser = FollowedUser(context: context)
             followedUser.id = Int64(id)
             try context.save()

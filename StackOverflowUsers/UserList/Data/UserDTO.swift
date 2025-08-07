@@ -5,7 +5,6 @@
 //  Created by Arrowsmith, Matthew on 04/08/2025.
 //
 
-// TODO: The same as User for now, might not be necessary.
 struct UserResponseDTO: Codable {
     let items: [UserDTO]
 }

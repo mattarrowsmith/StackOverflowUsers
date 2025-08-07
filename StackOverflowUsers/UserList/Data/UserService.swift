@@ -18,7 +18,6 @@ class UserService: UserServiceProtocol {
     }
 
     func fetchUsers() async throws -> [User] {
-        // TODO: Use URLBuilder, make query parameters more flexible
         guard let url = URL(string: "https://api.stackexchange.com/2.2/users?page=1&pagesize=20&order=desc&sort=reputation&site=stackoverflow") else {
             throw UserServiceError.invalidURL
         }

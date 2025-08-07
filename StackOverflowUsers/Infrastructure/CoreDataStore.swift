@@ -26,7 +26,6 @@ class CoreDataStore {
             do {
                 try context.save()
             } catch {
-                // TODO: - Log to Crashlytics
                 assertionFailure("CoreDataStorage Unresolved error \(error), \((error as NSError).userInfo)")
             }
         }
