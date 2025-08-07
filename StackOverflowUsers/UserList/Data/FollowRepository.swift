@@ -50,15 +50,15 @@ class FollowRepository: FollowRepositoryProtocol {
     public func unfollowUser(withId id: Int) async throws -> Void {
         try await store.persistentContainer.performBackgroundTask { context in
             let fetchRequest: NSFetchRequest<FollowedUser> = FollowedUser.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+            fetchRequest.predicate = NSPredicate(format: "id == %@", NSNumber(value: id))
+            fetchRequest.fetchLimit = 1
 
-            let results = try context.fetch(fetchRequest)
-            if let user = results.first {
-                context.delete(user)
-                try context.save()
-            } else {
+            guard let user = try context.fetch(fetchRequest).first else {
                 throw FollowRepositoryError.userNotFound
             }
+
+            context.delete(user)
+            try context.save()
         }
     }
 }

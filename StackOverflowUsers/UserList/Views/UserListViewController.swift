@@ -22,8 +22,13 @@ class UserListViewController: UIViewController, UITableViewDataSource, UserListV
         }
     }
 
-    func onLoadComplete() {
+    func update() {
         userTableView.reloadData()
+    }
+
+    func update(row: Int) {
+        let indexPath = IndexPath(row: row, section: 0)
+        userTableView.reloadRows(at: [indexPath], with: .none)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,9 +53,8 @@ class UserListViewController: UIViewController, UITableViewDataSource, UserListV
     func didTapFollowButton(_ cell: UserListTableViewCell) {
         guard let indexPath = userTableView.indexPath(for: cell) else { return }
 
-        let user = viewModel.users[indexPath.row]
         Task {
-            await viewModel.follow(user)
+            await viewModel.toggleFollow(at: indexPath.row)
         }
     }
 }

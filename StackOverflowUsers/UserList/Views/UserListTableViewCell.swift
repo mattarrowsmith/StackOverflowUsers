@@ -29,7 +29,13 @@ class UserListTableViewCell: UITableViewCell {
     func configure(with user: User, isFollowed: Bool) {
         displayNameLabel.text = user.displayName
         reputationLabel.text = "\(user.reputation)" // TODO: worth formatting
-        followButton.isEnabled = !isFollowed
+        if isFollowed { // TODO: Proper styling
+            followButton.setTitle("Unfollow", for: .normal)
+            followButton.backgroundColor = .systemGray
+        } else {
+            followButton.setTitle("Follow", for: .normal)
+            followButton.backgroundColor = .systemBlue
+        }
         guard let url = URL(string: user.profileImage) else { // TODO: probably best to make this a URL in the model
             return
         }
