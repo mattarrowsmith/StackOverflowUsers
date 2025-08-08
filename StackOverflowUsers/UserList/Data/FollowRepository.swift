@@ -4,9 +4,6 @@
 //
 //  Created by Arrowsmith, Matthew on 06/08/2025.
 //
-/// Handles local store requests for client data.
-/// Client in this instance referring to the local user.
-
 import CoreData
 
 protocol FollowRepositoryProtocol {
