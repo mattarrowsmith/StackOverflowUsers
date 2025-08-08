@@ -50,17 +50,6 @@ class UserListViewModel {
         }
     }
 
-    private func handleErrors(in results: [LoadState]) -> String? {
-        let errorMessages = results.compactMap { result -> String? in
-            if case .error(let message) = result {
-                return message
-            }
-            return nil
-        }
-
-        return errorMessages.isEmpty ? nil : errorMessages.joined(separator: "\n")
-    }
-
     public func fetchUsers() async -> LoadState {
         do {
             users = try await userService.fetchUsers()
@@ -109,6 +98,17 @@ class UserListViewModel {
         }
     }
 
+    private func handleErrors(in results: [LoadState]) -> String? {
+        let errorMessages = results.compactMap { result -> String? in
+            if case .error(let message) = result {
+                return message
+            }
+            return nil
+        }
+
+        return errorMessages.isEmpty ? nil : errorMessages.joined(separator: "\n")
+    }
+
     private func updateRow(for user: User) {
         guard let index = users.firstIndex(of: user) else {
             return
@@ -119,7 +119,7 @@ class UserListViewModel {
         }
     }
 
-    enum LoadState {
+    enum LoadState: Equatable {
         case loading
         case loaded
         case error(message: String)

@@ -16,6 +16,9 @@ struct FollowRepositoryMock: FollowRepositoryProtocol {
     }
 
     func fetchFollowedUserIds() async throws -> Set<Int> {
+        if let error {
+            throw error
+        }
         return followedUserIds
     }
     

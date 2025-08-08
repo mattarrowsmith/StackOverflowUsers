@@ -39,25 +39,3 @@ struct UserServiceTests {
         }
     }
 }
-
-extension UserDTO {
-    public static var mock: Self {
-        .init(
-            accountId: 1,
-            displayName: "Mock User",
-            profileImage: "https://example.com/image.png",
-            reputation: 1000
-        )
-    }
-}
-
-extension User {
-    public static var mock: Self {
-        .init(
-            accountId: 1,
-            displayName: "Mock User",
-            profileImage: "https://example.com/image.png",
-            reputation: 1000
-        )
-    }
-}
