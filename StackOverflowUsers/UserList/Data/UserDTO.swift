@@ -1,5 +1,5 @@
 //
-//  UserModelDTO.swift
+//  UserDTO.swift
 //  StackOverflowUsers
 //
 //  Created by Arrowsmith, Matthew on 04/08/2025.
