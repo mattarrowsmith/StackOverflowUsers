@@ -6,7 +6,7 @@ Contained is a repository with the xcode project to build and run StackOverflowU
  - Saves followed users to a local storage for inter session persistence.
  - Displays an error if the fetch fails.
 
-![screenshot](https://imgur.com/a/j1jZwrJ)
+![screenshot](https://i.imgur.com/yyEjHlZ.png)
 
 ## Run instructions:
 - Clone the repo.
