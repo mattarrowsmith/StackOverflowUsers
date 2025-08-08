@@ -37,24 +37,26 @@ Having used both, I feel SwiftUI gives you great speed and efficiency when creat
 I feel a project of this size would have massively benefited from being written in SwiftUI due to how much Apple have simplifed creating and communicating view and state changes.
 
 
-As for the UIKit implementation:
+**UIKit implementation:**
 
 I prefer separate nibs to storyboards, as I feel storyboards tend to hide implemenation details and are difficult to reason about in source control. Nibs are a more modularised but still have the same review issues, 
 however I like how they give you a clear picture of what components are supposed to look like in interface builder. A project with more than one person working on it could have benefited from views declared programatically.
 
 ### Loading Requests:
-Currently uses a hard coded url. To extend this the base urls should be set by configs and use a builder to set parameters on the calls.
+Currently `UserService` uses a hard coded url. To extend this the base urls should be set by configs and use a builder to set parameters on the calls.
 A limitation of the simple request is that only the first 20 users are ever loaded, improvements to this would involve some form of pagination to allow for infinite scrolls.
-Images are also not preloaded and have no involved caching mechanism
+Images are also not preloaded and have no involved caching mechanism.
 
 ### Communication Pattern
 **Delegate**
+
 As this was a small project with simple communication between one ViewController and ViewModel I went with delegate pattern to communicate changes between viewmodel and view.
 Ideally this would use some form of binding or publisher pattern such as Combine, but due to scope I felt this was unnecessary.
 As soon as views start to get more complicated and nested something that can better communicate changes throughout view hierarchies would be preferred.
 
 ### Local Store:
 **CoreData**
+
 The choice of persistent store was a toss up between UserDefaults and CoreData. In the end I went with CoreData as I felt that was more suited to the nature of the data I was saving.
 Having CoreData is a lot more expandable and scalable so if this app were to be built upon further, CoreData is the better choice. For example you might want to query or relate followed users IDs to other data in the future.
 
