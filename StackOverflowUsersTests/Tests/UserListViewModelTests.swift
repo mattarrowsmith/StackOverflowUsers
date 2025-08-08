@@ -48,6 +48,17 @@ struct UserListViewModelTests {
     }
 
     @Test
+    func fetch_whenMultipleFails_setsErrorStateWithMultipleMessages() async {
+        let userService = UserServiceMock(error: MockError.any)
+        let followRepository = FollowRepositoryMock(followedUserIds: [], error: MockError.any)
+        let sut = UserListViewModel(userService: userService, followRepository: followRepository)
+
+        await sut.fetch()
+
+        #expect(sut.loadState == .error(message: "Failed to fetch users.\nFailed to fetch followed users."))
+    }
+
+    @Test
     func toggleFollow_whenUserIsNotFollowed_followsUser() async {
         let mockUsers: [User] = [.mock]
         let userService = UserServiceMock(users: mockUsers)
