@@ -2,6 +2,7 @@ import Testing
 import CoreData
 @testable import StackOverflowUsers
 
+@Suite(.serialized)
 struct FollowRepositoryTests {
     var mockStore: CoreDataStoreMock
     var sut: FollowRepository
