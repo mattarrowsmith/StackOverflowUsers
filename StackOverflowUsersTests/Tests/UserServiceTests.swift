@@ -10,11 +10,10 @@ import Foundation
 @testable import StackOverflowUsers
 
 struct UserServiceTests {
-
     enum MockError: Error { case networkUnavailable }
 
     @Test
-    func fetchUsers_whenNetworkSucceeds_returnsUsers() async throws {
+    func fetchUsers_whenResponseDataIsValid_returnsUsers() async throws {
         let mockUsers: [UserDTO] = [.mock, .mock]
         let wrapper = UserResponseDTO(items: mockUsers)
         let responseData = try JSONEncoder().encode(wrapper)
@@ -25,6 +24,19 @@ struct UserServiceTests {
         let fetchedUsers = try await sut.fetchUsers()
 
         #expect(fetchedUsers == [User.mock, User.mock])
+    }
+
+    @Test
+    func fetchUsers_whenResponseDataIsInvalid_throwsError() async throws {
+        let responseData = "{\"invalid\": \"json\"}".data(using: .utf8)!
+        let mockResponse = NetworkResponse(data: responseData, response: nil)
+        let mockNetwork = MockNetwork(response: mockResponse)
+
+        let sut = UserService(network: mockNetwork)
+
+        await #expect(throws: UserService.UserServiceError.invalidResponse) {
+            _ = try await sut.fetchUsers()
+        }
     }
 }
 
